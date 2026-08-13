@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HayatSrk — Fashion, Home & Kitchen Essentials</title>
+<meta name="description" content="Fashion you'll wear, tools you'll actually use. Everyday fashion, home essentials and kitchen gadgets in one place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1EAD9;
+    --paper-card:#FFFDF8;
+    --ink:#221D16;
+    --ink-soft:#5B5346;
+    --line: rgba(34,29,22,0.14);
+
+    --fashion:#7A2E42;
+    --home:#3E5641;
+    --kitchen:#8C5A17;
+    --stamp:#B03A22;
+
+    --radius: 4px;
+    --wrap: 1180px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 32px; }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    line-height:1.05;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(241,234,217,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:22px;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+  }
+  .logo span{ color:var(--stamp); }
+  .nav-links{
+    display:flex; gap:36px; list-style:none; margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-weight:500;
+    font-size:15px;
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+    transition:border-color .15s ease;
+  }
+  .nav-links a:hover{ border-color:var(--stamp); }
+  .nav-cta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:600;
+    background:var(--ink);
+    color:var(--paper);
+    padding:10px 18px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .menu-btn{
+    display:none;
+    background:none; border:none; cursor:pointer;
+    flex-direction:column; gap:5px; padding:6px;
+  }
+  .menu-btn span{ width:22px; height:2px; background:var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:88px 0 80px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero .eyebrow{ color:var(--stamp); }
+  .hero h1{
+    font-size:clamp(38px, 5vw, 62px);
+    margin-top:14px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--stamp);
+  }
+  .hero p{
+    max-width:46ch;
+    color:var(--ink-soft);
+    font-size:18px;
+    margin-top:20px;
+  }
+  .hero-actions{
+    display:flex; align-items:center; gap:22px;
+    margin-top:32px;
+  }
+  .btn-primary{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:14px;
+    background:var(--stamp);
+    color:#FFF6EE;
+    padding:15px 26px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    display:inline-block;
+    box-shadow:0 4px 0 rgba(34,29,22,0.18);
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 6px 0 rgba(34,29,22,0.18); }
+  .btn-secondary{
+    font-size:14px; font-weight:600;
+    text-decoration:underline;
+    text-underline-offset:4px;
+  }
+
+  /* signature tag-stack graphic */
+  .tag-stack{ position:relative; height:340px; }
+  .tag{
+    position:absolute;
+    width:220px;
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:10px 10px 4px 4px;
+    padding:22px 20px 20px;
+    box-shadow:0 14px 26px rgba(34,29,22,0.12);
+  }
+  .tag::before{
+    content:"";
+    position:absolute; top:12px; left:50%; transform:translateX(-50%);
+    width:14px; height:14px;
+    border-radius:50%;
+    border:3px solid var(--paper);
+    outline:2px solid var(--line);
+    background:var(--paper);
+  }
+  .tag svg{ width:26px; height:26px; margin-bottom:14px; }
+  .tag strong{ display:block; font-family:'Fraunces', serif; font-size:19px; }
+  .tag small{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.06em;
+    color:var(--ink-soft);
+  }
+  .tag-fashion{ top:0; left:10%; transform:rotate(-7deg); color:var(--fashion); z-index:3; }
+  .tag-home{ top:70px; left:38%; transform:rotate(4deg); color:var(--home); z-index:2; }
+  .tag-kitchen{ top:150px; left:6%; transform:rotate(-2deg); color:var(--kitchen); z-index:1; }
+
+  /* ---------- Departments ---------- */
+  .departments{ padding:70px 0 90px; border-top:1px solid var(--line); }
+  .section-head{ max-width:60ch; margin-bottom:48px; }
+  .section-head .eyebrow{ color:var(--ink-soft); }
+  .section-head h2{ font-size:clamp(28px,3.4vw,40px); margin-top:10px; }
+
+  .dept-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .dept-card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:34px 28px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .dept-card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(34,29,22,0.10); }
+  .dept-card::after{
+    content:"";
+    position:absolute; top:0; left:0; height:5px; width:100%;
+    background:var(--accent);
+  }
+  .dept-card .icon-badge{
+    width:52px; height:52px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:color-mix(in srgb, var(--accent) 14%, transparent);
+    color:var(--accent);
+    margin-bottom:22px;
+  }
+  .dept-card .icon-badge svg{ width:26px; height:26px; }
+  .dept-card h3{ font-size:23px; margin-bottom:10px; }
+  .dept-card p{ color:var(--ink-soft); font-size:15px; margin:0 0 22px; }
+  .dept-card a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:600;
+    text-decoration:none;
+    color:var(--accent);
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+  .card-fashion{ --accent:var(--fashion); }
+  .card-home{ --accent:var(--home); }
+  .card-kitchen{ --accent:var(--kitchen); }
+
+  /* ---------- Value strip ---------- */
+  .values{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:36px 0;
+  }
+  .values .wrap{
+    display:flex; flex-wrap:wrap; gap:28px 48px;
+    justify-content:space-between;
+  }
+  .value-item{ display:flex; align-items:baseline; gap:10px; }
+  .value-item .eyebrow{ color:var(--stamp); }
+  .value-item span.label{ font-size:15px; color:var(--ink-soft); }
+
+  /* ---------- Banner ---------- */
+  .banner{
+    padding:90px 0;
+    text-align:center;
+  }
+  .banner h2{
+    font-size:clamp(30px,4.2vw,48px);
+    max-width:16ch;
+    margin:0 auto 18px;
+  }
+  .banner p{
+    color:var(--ink-soft);
+    max-width:48ch;
+    margin:0 auto 30px;
+    font-size:17px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--paper);
+    padding:56px 0 28px;
+  }
+  .footer-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(241,234,217,0.16);
+  }
+  .footer-brand .logo{ color:var(--paper); }
+  .footer-brand p{ color:rgba(241,234,217,0.6); max-width:32ch; margin-top:12px; font-size:14px; }
+  .footer-cols{ display:flex; gap:64px; }
+  .footer-col h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:rgba(241,234,217,0.5);
+    margin:0 0 14px;
+  }
+  .footer-col ul{ list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+  .footer-col a{ text-decoration:none; font-size:14px; color:rgba(241,234,217,0.85); }
+  .footer-col a:hover{ color:var(--paper); }
+  .footer-bottom{
+    padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:13px; color:rgba(241,234,217,0.45);
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--stamp);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+
+  @media (max-width: 900px){
+    .hero{ grid-template-columns:1fr; padding-top:56px; }
+    .tag-stack{ height:280px; margin-top:20px; }
+    .dept-grid{ grid-template-columns:1fr; }
+    .nav-links, .nav-cta{ display:none; }
+    .menu-btn{ display:flex; }
+    .footer-top{ flex-direction:column; }
+    .footer-cols{ gap:40px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <a href="#" class="logo">Hayat<span>Srk</span></a>
+    <ul class="nav-links">
+      <li><a href="#fashion">Fashion</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#kitchen">Kitchen</a></li>
+    </ul>
+    <a href="#departments" class="nav-cta">Shop now</a>
+    <button class="menu-btn" aria-label="Open menu" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div>
+    <p class="eyebrow">Fashion · Home · Kitchen</p>
+    <h1>Style you'll <em>wear</em>,<br>tools you'll actually <em>use</em>.</h1>
+    <p>One shelf for everyday fashion, home essentials and the kitchen gadgets that quietly make your day easier — picked for how often you'll reach for them, not how they photograph.</p>
+    <div class="hero-actions">
+      <a href="#departments" class="btn-primary">Browse the shelf</a>
+      <a href="#kitchen" class="btn-secondary">See what's new</a>
+    </div>
+  </div>
+  <div class="tag-stack" aria-hidden="true">
+    <div class="tag tag-fashion">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="10" r="4"/><path d="M32 14 L10 36 H54 Z"/></svg>
+      <strong>Fashion</strong>
+      <small>DAILY WEAR</small>
+    </div>
+    <div class="tag tag-home">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M8 34 L32 12 L56 34"/><path d="M14 30 V54 H50 V30"/></svg>
+      <strong>Home</strong>
+      <small>EVERYDAY GOODS</small>
+    </div>
+    <div class="tag tag-kitchen">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="32" y1="8" x2="32" y2="24"/><path d="M20 24 C20 24 18 46 32 54 C46 46 44 24 44 24"/><path d="M24 24 C24 24 23 42 32 50"/><path d="M40 24 C40 24 41 42 32 50"/></svg>
+      <strong>Kitchen</strong>
+      <small>DAILY-USE TOOLS</small>
+    </div>
+  </div>
+</section>
+
+<section class="departments" id="departments">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The three counters</p>
+      <h2>Everything on the shelf, sorted by what it's for.</h2>
+    </div>
+    <div class="dept-grid">
+
+      <div class="dept-card card-fashion" id="fashion">
+        <div class="icon-badge">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><circle cx="32" cy="10" r="4"/><path d="M32 14 L10 36 H54 Z"/></svg>
+        </div>
+        <h3>Fashion</h3>
+        <p>Everyday pieces that hold up past the first wash — easy tops, staple bottoms and accessories that don't need a special occasion.</p>
+        <a href="#">Shop fashion →</a>
+      </div>
+
+      <div class="dept-card card-home" id="home">
+        <div class="icon-badge">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M8 34 L32 12 L56 34"/><path d="M14 30 V54 H50 V30"/></svg>
+        </div>
+        <h3>Home</h3>
+        <p>Small things that make a house run smoother — organisers, everyday decor and the fixes you didn't know you needed.</p>
+        <a href="#">Shop home →</a>
+      </div>
+
+      <div class="dept-card card-kitchen" id="kitchen">
+        <div class="icon-badge">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="32" y1="8" x2="32" y2="24"/><path d="M20 24 C20 24 18 46 32 54 C46 46 44 24 44 24"/><path d="M24 24 C24 24 23 42 32 50"/><path d="M40 24 C40 24 41 42 32 50"/></svg>
+        </div>
+        <h3>Kitchen tools</h3>
+        <p>The gadgets that earn a permanent spot on the counter — built for daily cooking, not once-a-year baking projects.</p>
+        <a href="#">Shop kitchen →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="values">
+  <div class="wrap">
+    <div class="value-item"><span class="eyebrow">Checked</span><span class="label">Every item quality-tested before listing</span></div>
+    <div class="value-item"><span class="eyebrow">Dispatched fast</span><span class="label">Orders shipped within 24 hours</span></div>
+    <div class="value-item"><span class="eyebrow">Easy returns</span><span class="label">7-day no-questions exchange window</span></div>
+  </div>
+</section>
+
+<section class="banner wrap">
+  <h2>New on the shelf every week.</h2>
+  <p>We restock in small batches across all three counters — fashion, home and kitchen — so there's always something worth a second look.</p>
+  <a href="#departments" class="btn-primary">Start browsing</a>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">Hayat<span>Srk</span></a>
+        <p>Fashion, home essentials and kitchen tools for everyday use — not just the shelf, the stuff you'll actually reach for.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#fashion">Fashion</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#kitchen">Kitchen</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Store</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Shipping &amp; returns</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HayatSrk</span>
+      <span>Made with care, one shelf at a time.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('menuBtn').addEventListener('click', function(){
+    var links = document.querySelector('.nav-links');
+    var cta = document.querySelector('.nav-cta');
+    var open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    cta.style.display = open ? 'none' : 'inline-block';
+    if(!open){
+      links.style.cssText += 'flex-direction:column; position:fixed; top:70px; left:0; right:0; background:var(--paper); padding:24px 32px; border-bottom:1px solid var(--line);';
+    }
+  });
+</script>
+
+</body>
+</html>
